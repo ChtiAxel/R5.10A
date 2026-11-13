@@ -8,6 +8,7 @@ namespace PixelHub.Api.Models;
 public class Game
 {
     [BsonId]
+    [JsonConverter(typeof(ObjectIdJsonConverter))]
     public ObjectId Id { get; set; }
 
     [BsonElement("titre")]
@@ -35,4 +36,6 @@ public class Game
     // Côté API : les mêmes champs, convertis en types .NET que le JSON sait écrire.
     [BsonIgnore]
     public Dictionary<string, object> Specifiques => AutresChamps.ToDictionary();
+    [BsonElement("prix")]
+    public int Prix { get; set; }
 }
